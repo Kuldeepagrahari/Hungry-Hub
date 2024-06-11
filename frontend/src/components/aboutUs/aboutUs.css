@@ -1,0 +1,27 @@
+.about-us p{
+   color:black;
+   /* border:1.5px orange solid; */
+   border-radius: 10px;
+   padding: 50px 50px;
+
+}
+.about-us h1{
+    margin-top: 10px;
+    text-align: center;
+    color: tomato;
+    
+    
+}
+.about-us{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    border: 2px orange solid;
+    border-radius: 10px;
+}
+.about-us table{
+   
+    padding:50px 50px;
+    width:80vw;
+    margin-top:20px;
+    margin-bottom:20px;
+}
