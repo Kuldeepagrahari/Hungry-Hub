@@ -5,11 +5,11 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-    const url = "https://hungry-hub-backend-r2gu.onrender.com"
+    const url = "http://localhost:4000";
     const [food_list, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
-
+    console.log(token)
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {

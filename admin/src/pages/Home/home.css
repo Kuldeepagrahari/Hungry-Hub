@@ -1,0 +1,19 @@
+.home-admin{
+    /* padding: 20px; */
+    display: flex;
+    /* align-items: center; */
+    margin-top: 10vh;
+    margin-right: 10vw;
+    /* justify-content: center; */
+    flex-direction: column;
+    width: 70%;
+    gap: 20px;
+    h1{
+        font-size: 40px;
+        color:white;
+    }
+    h3{
+        font-size: 20px;
+        color:white;
+    }
+}

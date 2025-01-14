@@ -14,4 +14,4 @@ export const assets ={
     parcel_icon
 }
 
-export const url = 'https://hungry-hub-backend-r2gu.onrender.com'
+export const url = 'http://localhost:4000'

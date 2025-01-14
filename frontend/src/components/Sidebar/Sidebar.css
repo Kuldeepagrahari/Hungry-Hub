@@ -1,0 +1,134 @@
+.sidebar {
+  width: 250px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: tomato;
+  color: white;
+  overflow: hidden;
+  z-index: 2000;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-button {
+  background-color: transparent;
+  margin: 10px auto;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: right;
+}
+
+.logo {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 70px;
+  border-radius: 10px;
+  width: 150px;
+  transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.collapsed .logo {
+  opacity: 0;
+  width: 0;
+}
+
+.navbar-menu {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navbar-menu a {
+  display: flex;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: font-size 0.3s ease, padding 0.3s ease;
+}
+
+.sidebar.collapsed .navbar-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-menu a.active {
+  font-weight: bold;
+  background-color: rgb(253, 77, 46);
+  width: 200px;
+  /* border-radius: 20px; */
+  border-left: 4px solid white;
+}
+.sidebar.collapsed .navbar-menu a.active{
+
+    font-weight: bold;
+    background-color: rgb(253, 77, 46);
+    width: 40px;
+    /* border-radius: 20px; */
+  
+}
+.navbar-menu a:hover {
+  background-color: rgb(239, 67, 37);
+  /* border-radius: 20px; */
+}
+
+.navbar-menu a span {
+  margin-left: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .navbar-menu a span {
+  opacity: 0;
+}
+
+.navbar-menu a svg {
+  font-size: 20px;
+  transition: font-size 0.3s ease;
+}
+
+.sidebar.collapsed .navbar-menu a svg {
+  font-size: 28px;
+}
+
+.sidebar.collapsed .navbar-menu a {
+  padding: 15px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+  }
+  
+  .navbar-menu {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .toggle-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .sidebar.collapsed .navbar-menu {
+    display: none;
+  }
+}

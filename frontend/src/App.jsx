@@ -10,6 +10,8 @@ import MyOrders from './pages/MyOrders/MyOrders'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify/Verify'
+import Sidebar from './components/Sidebar/Sidebar'
+import CustomerCare from './pages/CustomerCare/CustomerCare'
 
 const App = () => {
 
@@ -20,6 +22,9 @@ const App = () => {
     <ToastContainer/>
     {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
       <div className='app'>
+       
+        <div className='sidebar-cont'>  <Sidebar></Sidebar></div>
+        <div className="content-cont">
         <Navbar setShowLogin={setShowLogin}/>
         <Routes>
           <Route path='/' element={<Home />}/>
@@ -27,9 +32,13 @@ const App = () => {
           <Route path='/order' element={<PlaceOrder />}/>
           <Route path='/myorders' element={<MyOrders />}/>
           <Route path='/verify' element={<Verify />}/>
+          <Route path='/customerCare' element={<CustomerCare />}></Route>
         </Routes>
+        <Footer />
+        </div>
+        
       </div>
-      <Footer />
+      
     </>
   )
 }

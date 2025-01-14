@@ -1,5 +1,8 @@
 .cart {
     margin: 100px 0px;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: white;
 }
 
 .cart hr {

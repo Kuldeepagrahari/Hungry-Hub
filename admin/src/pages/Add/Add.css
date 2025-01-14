@@ -2,8 +2,11 @@
     width: 70%;
     margin-left: max(5vw,25px);
     margin-top: 50px;
-    color: #6D6D6D;
+    color: #3f3d3d;
     font-size: 16px;
+    border-radius: 20px;
+    padding: 40px;
+    background-color: white;
 }
 .add form{
    gap: 20px;
