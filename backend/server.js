@@ -14,7 +14,7 @@ const port = process.env.PORT || 4000
 
 // middlewares
 app.use(express.json())
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://hungry-hub-eosin.vercel.app/" }));
 // app.use(cors({origin:"http://localhost:5174"}))
 // db connection
 connectDB()
