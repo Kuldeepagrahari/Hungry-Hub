@@ -8,6 +8,8 @@
     font-size: max(2vw,24px);
     font-weight: 600;
     color: white;
+    font-style: italic;
+    
 }
 .food-display-list{
     padding: 20px;
