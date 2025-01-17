@@ -58,7 +58,7 @@
     height: 34vw;
    
     margin: 30px auto;
-    background: url('hero3.png') no-repeat;
+    background: url('../../assets/hero3.png') no-repeat;
     width: 100%;
     background-size:contain;
     position: relative;
