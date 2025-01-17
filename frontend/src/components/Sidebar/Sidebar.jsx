@@ -11,7 +11,7 @@ import { FaBars } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [menu, setMenu] = useState('home');
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [isMobileView, setIsMobileView] = useState(false);
 
   const toggleSidebar = () => {
