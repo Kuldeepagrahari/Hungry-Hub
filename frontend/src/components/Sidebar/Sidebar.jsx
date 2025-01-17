@@ -55,14 +55,13 @@ const Sidebar = () => {
           <BiHomeAlt />
           {!isCollapsed && <span>Home</span>}
         </Link>
-        <a
-          href="#explore-menu"
+        <NavLink to="/foodMenu"
           onClick={() => setMenu('menu')}
           className={`${menu === 'menu' ? 'active' : ''}`}
         >
           <BiFoodMenu />
           {!isCollapsed && <span>Menu</span>}
-        </a>
+        </NavLink>
         <a
           onClick={() => navigate("/myorders")}
           className={`${menu === 'orders' ? 'active' : ''}`}
@@ -70,20 +69,20 @@ const Sidebar = () => {
           <LuClipboardList />
           {!isCollapsed && <span>My Orders</span>}
         </a>
-        <a
+        {/* <a
           href="#about-us2"
           onClick={() => setMenu('about')}
           className={`${menu === 'about' ? 'active' : ''}`}
         >
           <RiCustomerServiceLine />
           {!isCollapsed && <span>Contact Us</span>}
-        </a>
+        </a> */}
         <NavLink
           to="/customerCare"
           onClick={() => setMenu('contact')}
           className={`${menu === 'contact' ? 'active' : ''}`}
         >
-          <MdOutlineMarkUnreadChatAlt />
+          <RiCustomerServiceLine />
           {!isCollapsed && <span>Customer Care</span>}
         </NavLink>
       </ul>

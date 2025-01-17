@@ -54,7 +54,7 @@ const PlaceOrder = () => {
             toast.error("Something Went Wrong")
         }
     }
-
+    
     useEffect(() => {
         if (!token) {
             toast.error("to place an order sign in first")
@@ -96,7 +96,8 @@ const PlaceOrder = () => {
                         <div className="cart-total-details"><b>Total</b><b>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 49}</b></div>
                     </div>
                 </div>
-                <button className='place-order-submit' type='submit'>Proceed To Payment</button>
+                <button className='place-order-submit' type='submit'>Proceed to Online Payment</button>
+                {/* <button onClick={handleCOD} type='submit'>Cash on Delivery</button> */}
             </div>
         </form>
     )

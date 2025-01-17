@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify/Verify'
 import Sidebar from './components/Sidebar/Sidebar'
 import CustomerCare from './pages/CustomerCare/CustomerCare'
+import FoodMenu from './pages/FoodMenu/FoodMenu'
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
         <Navbar setShowLogin={setShowLogin}/>
         <Routes>
           <Route path='/' element={<Home />}/>
+          <Route path='/foodMenu' element={<FoodMenu />}/>
           <Route path='/cart' element={<Cart />}/>
           <Route path='/order' element={<PlaceOrder />}/>
           <Route path='/myorders' element={<MyOrders />}/>
