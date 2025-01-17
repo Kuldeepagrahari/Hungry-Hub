@@ -14,7 +14,7 @@ const port = process.env.PORT || 10000
 
 // middlewares
 app.use(express.json())
-app.use(cors({ origin: "https://hungry-hub-frontend-wpi5.onrender.com/" }));
+app.use(cors({ origin: "https://hungry-hub-frontend-wpi5.onrender.com" }));
 // app.use(cors({origin:"http://localhost:5174"}))
 // db connection
 connectDB()
