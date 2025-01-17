@@ -36,11 +36,11 @@ const Sidebar = () => {
     <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <button className="toggle-button" onClick={toggleSidebar}>
         {isMobileView ? (
-          <FaBars style={{ backgroundColor:"tomato", fontSize: "30px", color: "white" }} />
+          <FaBars style={{ fontSize: "20px", color: "tomato" }} />
         ) : isCollapsed ? (
-          <TbLayoutSidebarRightCollapse style={{ fontSize: "30px", color: "white" }} />
+          <TbLayoutSidebarRightCollapse style={{ fontSize: "30px", color: "tomato" }} />
         ) : (
-          <TbLayoutSidebarLeftCollapse style={{ fontSize: "30px", color: "white" }} />
+          <TbLayoutSidebarLeftCollapse style={{ fontSize: "30px", color: "tomato" }} />
         )}
       </button>
       <Link to="/">

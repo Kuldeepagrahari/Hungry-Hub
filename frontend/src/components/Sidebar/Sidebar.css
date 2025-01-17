@@ -17,12 +17,16 @@
 }
 
 .toggle-button {
-  background-color: transparent;
+  background-color: white;
   margin: 10px auto;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-align: right;
+  padding: 10px;
+  border-radius: 50%;
+  color:tomato;
+
 }
 
 .logo {
@@ -111,6 +115,7 @@
   .sidebar {
     position: fixed;
     z-index: 1000;
+    box-shadow: 10px 10px 100px red;
   }
   
   .navbar-menu {
