@@ -45,12 +45,12 @@ A responsive and user-friendly food ordering platform that allows users to brows
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Kuldeepagrahari/Hungry-Hub.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd food-ordering-app
+   cd hungry-hub
    ```
 
 3. Install dependencies:
