@@ -43,18 +43,18 @@ const Sidebar = () => {
           <TbLayoutSidebarLeftCollapse style={{ fontSize: "30px", color: "tomato" }} />
         )}
       </button>
-      <Link to="/">
+      <NavLink to="/">
         <img className="logo" src={hungry_hub} alt="Logo" />
-      </Link>
+      </NavLink>
       <ul className="navbar-menu">
-        <Link
+        <NavLink
           to="/"
           onClick={() => setMenu('home')}
           className={`${menu === 'home' ? 'active' : ''}`}
         >
           <BiHomeAlt />
           {!isCollapsed && <span>Home</span>}
-        </Link>
+        </NavLink>
         <NavLink to="/foodMenu"
           onClick={() => setMenu('menu')}
           className={`${menu === 'menu' ? 'active' : ''}`}
@@ -62,13 +62,13 @@ const Sidebar = () => {
           <BiFoodMenu />
           {!isCollapsed && <span>Menu</span>}
         </NavLink>
-        <a
-          onClick={() => navigate("/myorders")}
-          className={`${menu === 'orders' ? 'active' : ''}`}
+        <NavLink to="myorders"
+          onClick={() => setMenu('myorders')}
+          className={`${menu === 'myorders' ? 'active' : ''}`}
         >
           <LuClipboardList />
           {!isCollapsed && <span>My Orders</span>}
-        </a>
+        </NavLink>
         {/* <a
           href="#about-us2"
           onClick={() => setMenu('about')}
