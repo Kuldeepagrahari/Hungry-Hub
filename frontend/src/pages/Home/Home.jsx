@@ -7,11 +7,8 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div style={{height:"min(100vh, 600px)"}}>
       <Header/>
-      {/* <ExploreMenu setCategory={setCategory} category={category}/>
-      <FoodDisplay category={category}/> */}
-      
     </div>
   )
 }

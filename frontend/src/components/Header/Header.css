@@ -55,9 +55,9 @@
 } */
 
 .header{
-    height: 34vw;
+    height: 100vh;
    
-    margin: 30px auto;
+    margin: 0px auto;
     background: url('../../assets/hero3.png') no-repeat;
     width: 100%;
     background-size:contain;
@@ -67,17 +67,17 @@
     /* width:400px; */
 }
 .header-contents{
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
     gap: 1.5vw;
     max-width: 50%;
-    bottom: 10%;
-    left: 10vw;
+   
     /* top: 100px; */
     animation: fadeIn 3s;
+    height:80vh;
 }
 .header-contents h2{
     font-weight:500;
@@ -88,42 +88,70 @@
     color: white;
     font-size: 1.3vw;
 }
-.header-contents button{
-    /* border: 1px solid #ffffff; */
-    background: white;
-    border: none;
-    color: black;
-    font-weight: 500;
-    margin-top: 40vh;
-    padding: 1vw 2vw;
-    /* background: transparent; */
-    font-size: max(1vw,13px);
-    border-radius: 50px;
-}
-
-.header-contents button:hover{
-    background-color: rgb(230, 239, 70);
-    color: black;
-    -webkit-transition: all 0.3s ease;
-    transition: all 1s ease;
-    transition-delay: 0.1s ease;
-    cursor: pointer;
-}
+@keyframes buttonPulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 1px 1px 10px rgb(80, 38, 38);
+    }
+    50% {
+      transform: scale(1.1);
+      box-shadow: 2px 2px 15px rgb(120, 50, 50);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 1px 1px 10px rgb(80, 38, 38);
+    }
+  }
+  
+  .header-contents button {
+      /* border: 1px solid #ffffff; */
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      background: white;
+      border: none;
+      color: red;
+      font-weight: bold;
+    
+      /* font-size : 80px; */
+      width: 200px;
+      
+      padding: 0.5vw 0.5vw;
+      box-shadow: 1px 1px 10px rgb(80, 38, 38);
+      font-size: max(1.2vw, 20px);
+      border-radius: 50px;
+      animation: buttonPulse 2s infinite; /* Add animation here */
+  }
+  
+  .header-contents button:hover {
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      -webkit-transition: all 0.3s ease;
+      transition: all 1s ease;
+      transition-delay: 0.1s ease;
+      cursor: pointer;
+      
+      animation: buttonPulse 1.5s infinite; /* Speed up on hover */
+  }
+  
 @media (max-width:1050px) {
     .header{
         height: 50vw;
-        margin-top: 80px;
+        margin-top: 30%;
     }
     .header-contents{
         max-width: 45%;
         top: 20px;
         button{
-            margin-top: 30vh;
-          
+            padding: 20px 20px;
+            bottom: 0;
+            left: 10%;
         }
+        
     }
 }
-@media(max-width:750px){
+@media(max-width:950px){
     .header-contents{
         max-width: 55%;
     }
@@ -131,8 +159,10 @@
        display: none;
     }
     .header-contents button{
-        padding: 2vw 4vw;
-        opacity: 0;
+        
+        /* opacity: 0; */
+        bottom: 30vh;
+        left: 35%;
     }
 }
 
