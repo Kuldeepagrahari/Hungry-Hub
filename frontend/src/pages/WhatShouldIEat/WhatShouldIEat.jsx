@@ -1,8 +1,8 @@
 // src/pages/WhatShouldIEat/WhatShouldIEat.jsx (Final Code)
 
-import React, { useState, useEffect } from 'react';
-import './WhatShouldIEat.css';
-import { IoIosSearch, IoIosRestaurant } from 'react-icons/io';
+import { useState, useEffect } from 'react';
+import './whatShouldIEat.css';
+import { IoIosRestaurant } from 'react-icons/io';
 import { GiPartyPopper } from 'react-icons/gi';
 import { FaHeartbeat, FaAllergies, FaSmile } from 'react-icons/fa';
 import { RiSparkling2Fill } from 'react-icons/ri'; // The new Gemini icon
