@@ -13,6 +13,7 @@ import Verify from './pages/Verify/Verify'
 import Sidebar from './components/Sidebar/Sidebar'
 import CustomerCare from './pages/CustomerCare/CustomerCare'
 import FoodMenu from './pages/FoodMenu/FoodMenu'
+import WhatShouldIEat from './pages/WhatShouldIEat/WhatShouldIEat'
 
 const App = () => {
 
@@ -35,6 +36,7 @@ const App = () => {
           <Route path='/myorders' element={<MyOrders />}/>
           <Route path='/verify' element={<Verify />}/>
           <Route path='/customerCare' element={<CustomerCare />}></Route>
+          <Route path='/suggestions' element={<WhatShouldIEat />}></Route>
         </Routes>
         <Footer />
         </div>

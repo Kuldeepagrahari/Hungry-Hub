@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoute.js";
 import foodRouter from "./routes/foodRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import geminiRouter from "./routes/geminiRoute.js"
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -16,7 +17,7 @@ const port = process.env.PORT || 10000;
 // Middleware
 app.use(express.json());
 
-// ✅ CORS configuration
+// CORS configuration
 const allowedOrigins = [
   "https://hungry-hub-client.onrender.com",
   "https://hungry-hub-admin-5v2a.onrender.com",
@@ -45,16 +46,17 @@ app.use("/api/user", userRouter);
 app.use("/api/food", foodRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
+app.use("/app/gemini", geminiRouter)
 
 // Static folder for images
 app.use("/images", express.static("uploads"));
 
 // Health check route
 app.get("/", (req, res) => {
-  res.send("✅ API Working Successfully!");
+  res.send("API Working Successfully!");
 });
 
 // Server start
 app.listen(port, () =>
-  console.log(`🚀 Server started on http://localhost:${port}`)
+  console.log(`Server started on http://localhost:${port}`)
 );

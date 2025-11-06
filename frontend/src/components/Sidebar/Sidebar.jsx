@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, NavLink } from 'react-router-dom';
+import {useNavigate, NavLink } from 'react-router-dom';
 import './Sidebar.css';
 import Hungry from '../../assets/Hungry.png';
 import { BiFoodMenu, BiHomeAlt } from 'react-icons/bi';
 import { RiCustomerServiceLine } from 'react-icons/ri';
 import { TbLayoutSidebarRightCollapse, TbLayoutSidebarLeftCollapse } from "react-icons/tb";
 import { LuClipboardList } from "react-icons/lu";
-import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
+import { RiSparkling2Fill } from "react-icons/ri";
 import { FaBars } from 'react-icons/fa';
+
 
 const Sidebar = () => {
   const [menu, setMenu] = useState('home');
@@ -30,7 +31,7 @@ const Sidebar = () => {
     };
   }, []);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
@@ -62,6 +63,14 @@ const Sidebar = () => {
           <BiFoodMenu />
           {!isCollapsed && <span>Menu</span>}
         </NavLink>
+        <NavLink
+          to="/suggestions"
+          onClick={() => setMenu('suggestions')}
+          className={`${menu === 'suggestions' ? 'active' : ''}`}
+        >
+          <RiSparkling2Fill />
+          {!isCollapsed && <span>What should I eat?</span>}
+        </NavLink>
         <NavLink to="myorders"
           onClick={() => setMenu('myorders')}
           className={`${menu === 'myorders' ? 'active' : ''}`}
@@ -77,6 +86,7 @@ const Sidebar = () => {
           <RiCustomerServiceLine />
           {!isCollapsed && <span>Contact Us</span>}
         </a> */}
+       
         <NavLink
           to="/customerCare"
           onClick={() => setMenu('contact')}

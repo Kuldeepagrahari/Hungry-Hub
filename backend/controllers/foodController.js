@@ -50,5 +50,23 @@ const removeFood = async (req, res) => {
     }
 
 }
+const getAllFoodItemsForAI = async () => {
+    try {
+        const foodItems = await foodModel.find({});
 
-export { listFood, addFood, removeFood }
+        // Use the description field for rich AI context!
+        const simplifiedMenu = foodItems.map(item => ({
+            name: item.name,
+            //  KEY CHANGE: Using description for AI context
+            rich_info: item.description, 
+            category: item.category,
+            price: item.price
+        }));
+
+        return simplifiedMenu;
+    } catch (error) {
+        console.error("Error fetching food items for AI:", error);
+        throw new Error("Database error while fetching menu for AI.");
+    }
+};
+export { listFood, addFood, removeFood, getAllFoodItemsForAI }
