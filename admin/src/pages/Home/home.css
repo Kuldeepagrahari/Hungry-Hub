@@ -1,19 +1,59 @@
-.home-admin{
-    /* padding: 20px; */
+.home-admin {
     display: flex;
-    /* align-items: center; */
-    margin-top: 10vh;
-    margin-right: 10vw;
-    /* justify-content: center; */
-    flex-direction: column;
-    width: 70%;
-    gap: 20px;
-    h1{
-        font-size: 40px;
-        color:white;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: linear-gradient(135deg, #ed4f06, #323233);
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .welcome-text {
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease;
+  }
+  
+  .welcome-text h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #60a5fa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .welcome-text p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #e2e8f0;
+  }
+  
+  .welcome-text p span {
+    font-weight: 600;
+    color: #93c5fd;
+  }
+  
+  .welcome-text h3 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #fca5a5;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
     }
-    h3{
-        font-size: 20px;
-        color:white;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-}
+  }
+  

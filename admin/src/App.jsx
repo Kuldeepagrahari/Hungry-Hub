@@ -32,7 +32,7 @@ const App = () => {
 
       {!admin ? (
         // 🔐 Show key input only if not verified
-        <div style={{ margin: "20px" }}>
+        <div id="verification" style={{ margin: "20px" }}>
           <h3>Enter Admin Secret Key</h3>
           <input
             type="text"

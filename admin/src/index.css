@@ -26,3 +26,58 @@ a{
 .cursor{
   cursor: pointer;
 }
+#verification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  gap: 16px;
+  background-color: white;
+  width:400px;
+  height: 400px;
+  border-radius: 20px;
+  
+}
+
+#verification h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#verification input {
+  width: 280px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#verification input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+}
+
+#verification button {
+  width: 150px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#verification button:hover {
+  background-color: #357ac9;
+}
+
+#verification button:active {
+  transform: scale(0.97);
+}
