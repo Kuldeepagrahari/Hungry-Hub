@@ -1,11 +1,12 @@
-// src/pages/WhatShouldIEat/WhatShouldIEat.jsx (Final Code)
+// src/pages/WhatShouldIEat/WhatShouldIEat.jsx (Final Code - Cleaned)
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // 👈 Removed useContext
 import './whatShouldIEat.css';
 import { IoIosRestaurant } from 'react-icons/io';
 import { GiPartyPopper } from 'react-icons/gi';
 import { FaHeartbeat, FaAllergies, FaSmile } from 'react-icons/fa';
-import { RiSparkling2Fill } from 'react-icons/ri'; // The new Gemini icon
+import { RiSparkling2Fill } from 'react-icons/ri'; 
+import { Link } from 'react-router-dom'; // 👈 Import Link for the instruction button
 
 const WhatShouldIEat = () => {
     // --- State Management for User Inputs ---
@@ -19,7 +20,7 @@ const WhatShouldIEat = () => {
     const [recommendations, setRecommendations] = useState(null); // { recommended: [], avoid: [] }
     const [error, setError] = useState(null);
 
-    // Helper functions for state changes (multi-select)
+    // Helper functions (remain the same)
     const toggleSelection = (state, setState, value) => {
         if (state.includes(value)) {
             setState(state.filter(item => item !== value));
@@ -28,7 +29,6 @@ const WhatShouldIEat = () => {
         }
     };
 
-    // Use effect to handle button styling visually
     useEffect(() => {
         document.querySelectorAll('.option-button').forEach(button => {
             const value = button.dataset.value;
@@ -38,7 +38,7 @@ const WhatShouldIEat = () => {
     }, [selectedOccasions, selectedDiets]);
 
 
-    // --- Core Function: Call Backend & Gemini ---
+    // --- Core Function: Call Backend & Gemini (URL changed back to local for testing) ---
     const handleGetRecommendations = async () => {
         const queryIsRelevant = selectedOccasions.length > 0 || selectedDiets.length > 0 || allergies || additionalDetails;
         if (!queryIsRelevant) {
@@ -47,7 +47,7 @@ const WhatShouldIEat = () => {
         }
 
         setLoading(true);
-        setRecommendations(null); // Clear previous results
+        setRecommendations(null); 
         setError(null);
 
         // Aggregate all user preferences into a single prompt string
@@ -60,24 +60,19 @@ const WhatShouldIEat = () => {
 
 
         try {
-            // 1. Call your dedicated Express endpoint
+            // NOTE: Using the local URL for development, change to Render URL for production/deployment test
             const response = await fetch('https://hungry-hub-server.onrender.com/api/gemini/suggestions', { 
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt: userPrompt })
             });
             
             const data = await response.json();
 
-            // 2. Handle errors from your backend server
             if (!response.ok || data.success === false) {
-                // The backend successfully returned an error response (e.g., 500 or 400)
                 throw new Error(data.message || 'Failed to get recommendations from the server.');
             }
 
-            // 3. Set the recommendations (data should be the clean JSON: {recommended, avoid})
             setRecommendations(data);
 
         } catch (err) {
@@ -99,7 +94,7 @@ const WhatShouldIEat = () => {
                 </p>
             </div>
 
-            {/* --- Input Grid (Same structure as before) --- */}
+            {/* --- Input Grid (remains the same) --- */}
             <div className="input-card-grid">
                 
                 <div className="input-card">
@@ -168,26 +163,31 @@ const WhatShouldIEat = () => {
                 <div className="recommendations-section">
                     <h2><FaSmile /> Gemini's Top Picks for You</h2>
                     <div className="recommendations-list">
-                        {/* Ensure recommendations.recommended is an array before mapping */}
                         {Array.isArray(recommendations.recommended) && recommendations.recommended.map((item, index) => (
                             <div key={index} className="recommendation-item">
                                 <h4>{item.name}</h4>
                                 <p className="reason">{item.reason}</p>
-                                {/* NOTE: You will need to implement the actual Add to Cart logic */}
-                                <button className="add-to-cart-btn">Add to Cart</button>
+                                {/* REMOVED: <button className="add-to-cart-btn">Add to Cart</button> */}
                             </div>
                         ))}
                     </div>
 
                     <h3 className="avoid-title">🚫 We Suggest You Avoid:</h3>
                     <div className="avoid-list">
-                        {/* Ensure recommendations.avoid is an array before mapping */}
                         {Array.isArray(recommendations.avoid) && recommendations.avoid.map((item, index) => (
                             <div key={index} className="avoid-item">
                                 <h4>{item.name}</h4>
                                 <p className="reason">{item.reason}</p>
                             </div>
                         ))}
+                    </div>
+                    
+                    {/* --- New Instruction and Link --- */}
+                    <div className="instruction-footer">
+                        <p>You can find all these suggested items, and easily add them to your cart, on the main Food Menu page.</p>
+                        <Link to="/foodMenu" className="primary-btn menu-link-btn">
+                            <IoIosRestaurant /> Go to Food Menu
+                        </Link>
                     </div>
                 </div>
             )}

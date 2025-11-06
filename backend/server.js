@@ -46,7 +46,7 @@ app.use("/api/user", userRouter);
 app.use("/api/food", foodRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
-app.use("/app/gemini", geminiRouter)
+app.use("/api/gemini", geminiRouter)
 
 // Static folder for images
 app.use("/images", express.static("uploads"));

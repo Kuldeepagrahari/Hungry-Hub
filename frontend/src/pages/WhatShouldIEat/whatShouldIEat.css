@@ -1,3 +1,7 @@
+/* ========================================================= */
+/* WHAT SHOULD I EAT PAGE STYLES */
+/* ========================================================= */
+
 /* Base Layout & Text */
 .what-should-i-eat-container {
     padding: 30px;
@@ -5,8 +9,9 @@
     margin: 0 auto;
 }
 
+/* Page Header (Assumes this section sits on a tomato background) */
 .tomato-text {
-    color: white;
+    color: white; /* CORRECT: Light text over assumed tomato background */
     font-size: 2.5em;
     font-weight: 700;
     margin-bottom: 10px;
@@ -16,7 +21,7 @@
 }
 
 .page-header p {
-    color: rgb(254, 251, 251);
+    color: rgb(254, 251, 251); /* CORRECT: Light text over assumed tomato background */
     font-size: 1rem;
     margin-bottom: 20px;
     font-weight: bold;
@@ -44,7 +49,7 @@
 
 .input-card h3 {
     font-size: 1.2em;
-    color: #333;
+    color: #333; /* CORRECT: Dark text over light background */
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
@@ -65,23 +70,24 @@
 }
 
 .option-button {
-    background-color: #fcebeb; /* Very light tomato background */
-    border: 1px solid #ffaa99;
+    background-color: #fff; /* CORRECT: Light background */
+    border: 1px solid #ccc;
     border-radius: 30px;
     padding: 10px 15px;
     font-size: 0.9em;
-    color: tomato;
+    color: #333; /* CORRECT: Dark text over light background */
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
 .option-button:hover {
-    background-color: #ffd6cc;
+    background-color: #f5f5f5;
+    border-color: #aaa;
 }
 
 .option-button.selected {
-    background-color: tomato;
-    color: #fff;
+    background-color: tomato; /* CORRECT: Tomato background */
+    color: #fff; /* CORRECT: Light text over tomato background */
     border-color: tomato;
     font-weight: bold;
     box-shadow: 0 2px 8px rgba(255, 99, 71, 0.4);
@@ -111,7 +117,7 @@
     box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.2);
 }
 
-/* Primary Button & Loading */
+/* 🛑 CORRECTED: PRIMARY BUTTON & Loading */
 .primary-btn {
     display: flex;
     align-items: center;
@@ -120,25 +126,28 @@
     width: fit-content;
     margin: 40px auto;
     padding: 15px 30px;
-    background-color: white;
-    color: tomato;
+    
+    background-color: white; /* CORRECT: Tomato background */
+    color: tomato; /* CORRECT: Light text */
+    
     border: none;
     border-radius: 30px;
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 5px 15px rgba(255, 99, 71, 0.4);
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 0 5px 15px rgba(255, 99, 71, 0.5), 0 2px 2px rgba(0, 0, 0, 0.2); 
 }
 
 .primary-btn:hover:not(:disabled) {
-    /* background-color: #ff6347; Slightly darker tomato */
+    background-color: #ff6347; /* Slightly darker tomato for hover */
+    color:white;
     transform: translateY(-2px);
 }
 
 .primary-btn:disabled, .primary-btn.loading {
     background-color: #ccc;
+    color: #555;
     cursor: not-allowed;
     box-shadow: none;
     transform: none;
@@ -180,7 +189,7 @@
 
 .recommendations-section h2 {
     font-size: 2em;
-    color: tomato;
+    color: tomato; /* Dark text over light background */
     text-align: center;
     margin-bottom: 30px;
     display: flex;
@@ -198,7 +207,7 @@
 
 .recommendation-item {
     background-color: #fff;
-    border-left: 5px solid tomato;
+    border-left: 5px solid tomato; /* Tomato accent on the side */
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -221,26 +230,10 @@
     flex-grow: 1;
 }
 
-.add-to-cart-btn {
-    background-color: #4CAF50; /* Green for success/cart */
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s;
-    width: 100%;
-}
-
-.add-to-cart-btn:hover {
-    background-color: #45a049;
-}
-
 /* Items to Avoid */
 .avoid-title {
     font-size: 1.5em;
-    color: #D32F2F; /* Red for warnings */
+    color: #f9f2f2; /* Red for warnings (Dark over light) */
     text-align: center;
     margin-bottom: 20px;
 }
@@ -271,10 +264,47 @@
     color: #777;
 }
 
+/* New Instruction Footer */
+.instruction-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.instruction-footer p {
+    font-size: 1.1em;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.menu-link-btn {
+    /* Ensures Link component is styled like the primary button */
+    display: inline-flex;
+    text-decoration: none; 
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    font-size: 1em;
+    background-color: white; /* Light text over tomato background */
+    color: tomato;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(255, 99, 71, 0.5), 0 2px 2px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-link-btn:hover {
+    background-color: #ff6347;
+    transform: translateY(-2px);
+}
+
+
 /* Media Query for smaller screens */
 @media (max-width: 600px) {
     .what-should-i-eat-container {
         padding: 20px 15px;
+        margin-top: 50px;
     }
     .input-card-grid {
         grid-template-columns: 1fr;
