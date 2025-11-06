@@ -1,4 +1,4 @@
-import logo from './hungry_hub.png'
+import logo from './Hungry.png'
 import add_icon from './add_icon.png'
 import order_icon from './order_icon.png'
 import profile_image from './profile_image.png'

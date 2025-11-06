@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, NavLink } from 'react-router-dom';
 import './Sidebar.css';
-import hungry_hub from '../../assets/hungry_hub.png';
+import Hungry from '../../assets/Hungry.png';
 import { BiFoodMenu, BiHomeAlt } from 'react-icons/bi';
 import { RiCustomerServiceLine } from 'react-icons/ri';
 import { TbLayoutSidebarRightCollapse, TbLayoutSidebarLeftCollapse } from "react-icons/tb";
@@ -44,7 +44,7 @@ const Sidebar = () => {
         )}
       </button>
       <NavLink to="/">
-        <img className="logo" src={hungry_hub} alt="Logo" />
+        <img className="logo" src={Hungry} alt="Logo" />
       </NavLink>
       <ul className="navbar-menu">
         <NavLink
