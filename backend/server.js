@@ -19,6 +19,7 @@ app.use(express.json());
 // ✅ CORS configuration
 const allowedOrigins = [
   "https://hungry-hub-client.onrender.com",
+  "https://hungry-hub-admin-5v2a.onrender.com",
   "http://localhost:5173",
   "http://localhost:5174",
 ];
