@@ -15,12 +15,13 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    color: white;
+    color: black;
     /* border: 1px solid #A9A9A9; */
     border-right: 0;
     padding: 8px 10px;
-    border-radius: 3px 0px 0px 3px; 
     cursor: pointer;
+    background-color: rgb(234, 192, 177);
+    border-radius: 20px;
 }
 .sidebar{
     font-size: max(1.2vw,10px );
@@ -29,7 +30,7 @@
     width: 20px;
 }
 .sidebar-option.active {
- background-color: rgb(244, 41, 5);
+ background-color: white;
  border-radius: 20px;
  border-color: tomato;
 }
