@@ -1,7 +1,6 @@
 import foodModel from "../models/foodModel.js";
-import fs from 'fs'
+import imagekit from '../config/imagekit.js'; 
 
-// all food list
 const listFood = async (req, res) => {
     try {
         const foods = await foodModel.find({})
@@ -10,45 +9,65 @@ const listFood = async (req, res) => {
         console.log(error);
         res.json({ success: false, message: "Error" })
     }
-
 }
-
-// add food
 const addFood = async (req, res) => {
-
-    let image_filename = `${req.file.filename}`
-
-    const food = new foodModel({
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        category:req.body.category,
-        image: image_filename,
-    })
     try {
+        // --- 1. Image Upload to ImageKit ---
+        if (!req.file || !req.file.buffer) {
+            return res.json({ success: false, message: "No image file buffer provided" });
+        }
+
+        // Convert file buffer to Base64 string for ImageKit API
+        const fileBase64 = req.file.buffer.toString('base64');
+        const fileName = req.file.originalname;
+
+        const imagekitResponse = await imagekit.upload({
+            file: fileBase64,
+            fileName: fileName,
+            folder: '/hungry-hub-foods', // Organizes files in your ImageKit dashboard
+        });
+
+        // --- 2. Save Data to MongoDB ---
+        const food = new foodModel({
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            category: req.body.category,
+            image: imagekitResponse.url,      
+            imageFileId: imagekitResponse.fileId,
+        });
+
         await food.save();
-        res.json({ success: true, message: "Food Added" })
+        res.json({ success: true, message: "Food Added via ImageKit" })
+        
     } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: "Error" })
+        console.log("ImageKit/DB Error:", error);
+        res.json({ success: false, message: "Error adding food" })
     }
 }
 
-// delete food
+// delete food (UPDATED for ImageKit)
 const removeFood = async (req, res) => {
     try {
-
         const food = await foodModel.findById(req.body.id);
-        fs.unlink(`uploads/${food.image}`, () => { })
 
+        if (!food) {
+             return res.json({ success: false, message: "Food item not found." });
+        }
+        
+        // --- 1. Delete Image from ImageKit ---
+        if (food.imageFileId) {
+            await imagekit.deleteFile(food.imageFileId); // Use File ID
+        }
+        
+        // --- 2. Delete MongoDB record ---
         await foodModel.findByIdAndDelete(req.body.id)
-        res.json({ success: true, message: "Food Removed" })
+        res.json({ success: true, message: "Food Removed from DB and ImageKit" })
 
     } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: "Error" })
+        console.log("ImageKit Delete Error:", error);
+        res.json({ success: false, message: "Error during deletion" })
     }
-
 }
 const getAllFoodItemsForAI = async () => {
     try {

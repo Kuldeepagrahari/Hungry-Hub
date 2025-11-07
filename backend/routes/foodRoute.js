@@ -1,23 +1,32 @@
 import express from 'express';
+import multer from 'multer';
 import { addFood, listFood, removeFood } from '../controllers/foodController.js';
 
-
-import multer from 'multer';
 const foodRouter = express.Router();
 
-//Image Storage Engine (Saving Image to uploads folder & rename it)
 
-const storage = multer.diskStorage({
-    destination: 'uploads',
-    filename: (req, file, cb) => {
-        return cb(null,`${Date.now()}${file.originalname}`);
-    }
-})
+// ----------------------------------------------------
+// 1. CONFIGURE MULTER FOR MEMORY STORAGE (ImageKit Requirement)
+// ----------------------------------------------------
+// This stores the file as a Buffer in memory (req.file.buffer),
+// which the addFood controller sends directly to ImageKit.
 
-const upload = multer({ storage: storage})
+const storage = multer.memoryStorage(); 
+const upload = multer({ storage: storage });
 
-foodRouter.get("/list",listFood);
-foodRouter.post("/add",upload.single('image'),addFood);
-foodRouter.post("/remove",removeFood);
+
+// ----------------------------------------------------
+// 2. DEFINE ROUTES (Public Access for now, using upload middleware)
+// ----------------------------------------------------
+
+// Public list is still accessible
+foodRouter.get("/list", listFood);
+
+// ImageKit Upload: Uses Memory Storage middleware
+foodRouter.post("/add", upload.single('image'), addFood); 
+
+// ImageKit Delete: Directly calls the controller to delete from the cloud
+foodRouter.post("/remove", removeFood);
+
 
 export default foodRouter;
