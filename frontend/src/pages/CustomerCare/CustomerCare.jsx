@@ -86,7 +86,7 @@ const CustomerCare = () => {
         <div className="support-container">
             <div className="page-header">
                 <h1 className="tomato-text"><RiCustomerServiceLine /> Customer Care Portal</h1>
-                <p>We're here to help! Submit any complaints, queries, or feedback below.</p>
+                <p> We're here to help! Submit any complaints, queries, or feedback below.</p>
             </div>
 
             <div className="support-content-grid">

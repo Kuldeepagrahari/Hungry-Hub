@@ -1,12 +1,10 @@
-// controllers/supportController.js
-
 import supportModel from '../models/supportModel.js';
 import userModel from '../models/userModel.js'; // Assuming userModel is available for lookup
 
 // 1. User: Submit a new ticket
 export const submitTicket = async (req, res) => {
     try {
-        const userId = req.body.userId; // Matches your authMiddleware pattern
+        const userId = req.userId; // Matches your authMiddleware pattern
 
         if (!userId) {
             return res.status(401).json({ success: false, message: "Authentication required to submit ticket." });
@@ -48,7 +46,7 @@ export const submitTicket = async (req, res) => {
 // 2. User: View their own tickets
 export const listUserTickets = async (req, res) => {
     try {
-        const userId = req.body.userId; 
+        const userId = req.userId; 
         
         if (!userId) {
             return res.status(401).json({ success: false, message: "Not Authorized." });

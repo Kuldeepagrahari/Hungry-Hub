@@ -78,15 +78,6 @@ const Sidebar = () => {
           <LuClipboardList />
           {!isCollapsed && <span>My Orders</span>}
         </NavLink>
-        {/* <a
-          href="#about-us2"
-          onClick={() => setMenu('about')}
-          className={`${menu === 'about' ? 'active' : ''}`}
-        >
-          <RiCustomerServiceLine />
-          {!isCollapsed && <span>Contact Us</span>}
-        </a> */}
-       
         <NavLink
           to="/customerCare"
           onClick={() => setMenu('contact')}

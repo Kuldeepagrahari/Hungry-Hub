@@ -6,6 +6,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
 
     const url = "https://hungry-hub-server.onrender.com";
+    // const url = "http://localhost:10000";
     const [food_list, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
@@ -30,17 +31,22 @@ const StoreContextProvider = (props) => {
         }
     }
 
+  
     const getTotalCartAmount = () => {
         let totalAmount = 0;
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
                 let itemInfo = food_list.find((product) => product._id === item);
-                totalAmount += itemInfo.price * cartItems[item];
+                
+                if (itemInfo) { 
+                    totalAmount += itemInfo.price * cartItems[item];
+                } else {
+                    console.warn(`Cart item ID ${item} not found in food_list.`); 
+                }
             }
         }
         return totalAmount;
     }
-
     const fetchFoodList = async () => {
         const response = await axios.get(url + "/api/food/list");
         setFoodList(response.data.data)
