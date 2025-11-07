@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import './CustomerCare.css';
-import { StoreContext } from '../../context/StoreContext';
+import { StoreContext } from '../../Context/StoreContext';
 import { RiCustomerServiceLine, RiFileEditLine, RiFileListLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 
