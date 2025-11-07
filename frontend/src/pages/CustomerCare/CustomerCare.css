@@ -1,0 +1,177 @@
+/* src/pages/CustomerCare/CustomerCare.css */
+
+.support-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tomato-text {
+    color: tomato; 
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.page-header p {
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.support-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; 
+    gap: 30px;
+}
+
+.support-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+}
+
+.support-card h2 {
+    font-size: 1.5em;
+    color: tomato;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Form Styles */
+.support-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.text-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    resize: none;
+}
+
+.detail-input {
+    min-height: 150px;
+}
+
+.primary-btn {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    padding: 12px;
+    background-color: tomato;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background-color: #ff6347;
+}
+
+/* Ticket History Styles */
+.ticket-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ticket-item {
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid #ccc;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.ticket-subject {
+    font-weight: 700;
+    color: #333;
+}
+
+.ticket-status {
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* Status Colors */
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404; 
+}
+.status-processing {
+    background-color: #d1ecf1;
+    color: #0c5460; 
+}
+.status-resolved {
+    background-color: #d4edda;
+    color: #155724; 
+}
+.status-closed {
+    background-color: #e9ecef;
+    color: #6c757d; 
+}
+
+.ticket-date {
+    font-size: 0.85em;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.ticket-message {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.admin-response {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #f7f7f7;
+    border-left: 3px solid tomato;
+    font-size: 0.9em;
+}
+
+.no-tickets-msg {
+    text-align: center;
+    color: #999;
+    margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .support-content-grid {
+        grid-template-columns: 1fr;
+    }
+}

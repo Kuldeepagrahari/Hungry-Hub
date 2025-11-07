@@ -1,120 +1,160 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import "./CustomerCareForm.css"; // Add styles to match the UI
+// src/pages/CustomerCare/CustomerCare.jsx
 
-// const CustomerCare = () => {
-//   const [formData, setFormData] = useState({
-//     orderId: "",
-//     complaintType: "",
-//     description: "",
-//     image: null,
-//   });
-
- 
-
-//   const [message, setMessage] = useState("");
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleFileChange = (e) => {
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       image: e.target.files[0],
-//     }));
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const data = new FormData();
-//     data.append("orderId", formData.orderId);
-//     data.append("complaintType", formData.complaintType);
-//     data.append("description", formData.description);
-//     data.append("image", formData.image);
-
-//     try {
-//       const response = await axios.post("http://localhost:5000/api/complains", data);
-//       if (response.status === 200) {
-//         setMessage("Complaint submitted successfully!");
-//         setFormData({
-//           orderId: "",
-//           complaintType: "",
-//           description: "",
-//           image: null,
-//         });
-//       }
-//     } catch (error) {
-//       console.error("Error submitting complaint:", error);
-//       setMessage("Failed to submit complaint. Please try again.");
-//     }
-//   };
-
-//   return (
-//     <div className="customer-care-form">
-//       <h2>Customer Care Service</h2>
-//       {message && <p className="message">{message}</p>}
-//       <form onSubmit={handleSubmit} encType="multipart/form-data">
-//         <label>Order ID:</label>
-//         <input
-//           type="text"
-//           name="orderId"
-//           value={formData.orderId}
-//           onChange={handleChange}
-//           required
-//         />
-
-//         <label>Complaint Type:</label>
-//         <select
-//           name="complaintType"
-//           value={formData.complaintType}
-//           onChange={handleChange}
-//           required
-//         >
-//           <option value="">Select Complaint Type</option>
-//           <option value="Wrong Item Delivered">Wrong Item Delivered</option>
-//           <option value="Late Delivery">Late Delivery</option>
-//           <option value="Damaged Packaging">Damaged Packaging</option>
-//           <option value="Other">Other</option>
-//         </select>
-
-//         <label>Description:</label>
-//         <textarea
-//           name="description"
-//           value={formData.description}
-//           onChange={handleChange}
-//           required
-//         />
-
-//         <label>Upload Image:</label>
-//         <input
-//           type="file"
-//           accept="image/*"
-//           onChange={handleFileChange}
-//           required
-//         />
-
-//         <button type="submit">Submit Complaint</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default CustomerCare;
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import './CustomerCare.css';
+import { StoreContext } from '../../context/StoreContext';
+import { RiCustomerServiceLine, RiFileEditLine, RiFileListLine } from 'react-icons/ri';
+import { toast } from 'react-toastify';
 
 const CustomerCare = () => {
-  return (
-    <div style={{textAlign:"center", height:"400px", borderRadius:"20px", display:"flex", alignItems:"center", color:"white", fontSize:"30px", justifyContent:"center", fontWeight:"bold"}}>
-      We're Sorry!<br />
-      This functionality is not LIVE for now.
-    </div>
-  )
-}
+    const { url, token } = useContext(StoreContext);
 
-export default CustomerCare
+    const [loading, setLoading] = useState(false);
+    const [tickets, setTickets] = useState([]);
+    const [newTicket, setNewTicket] = useState({
+        subject: 'Query', 
+        message: ''
+    });
+
+    const subjects = ['Query', 'Complaint', 'Order Issue', 'Feedback', 'Other'];
+
+    /* --- Form Submission Handlers --- */
+    const handleChange = (e) => {
+        setNewTicket({ ...newTicket, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmitTicket = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        if (!token) {
+            toast.error("Please log in to submit a support request.");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                `${url}/api/support/submit`, 
+                { ...newTicket, subject: newTicket.subject.toLowerCase() }, // Send subject lowercase for robust backend check
+                { headers: { token } }
+            );
+
+            if (response.data.success) {
+                toast.success("Support ticket submitted! We will respond shortly.");
+                setNewTicket({ subject: 'Query', message: '' });
+                fetchUserTickets(); 
+            } else {
+                toast.error(response.data.message || "Failed to submit ticket.");
+            }
+        } catch (error) {
+            toast.error("Network or server error. Could not submit ticket.");
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    /* --- Ticket History Fetcher --- */
+    const fetchUserTickets = async () => {
+        if (!token) return;
+
+        try {
+            const response = await axios.get(
+                `${url}/api/support/user-list`, 
+                { headers: { token } }
+            );
+
+            if (response.data.success) {
+                setTickets(response.data.data);
+            } else {
+                toast.error("Could not load your ticket history.");
+            }
+        } catch (error) {
+            console.error("Error fetching tickets:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (token) {
+            fetchUserTickets();
+        }
+    }, [token]);
+
+
+    /* --- Component Render --- */
+    return (
+        <div className="support-container">
+            <div className="page-header">
+                <h1 className="tomato-text"><RiCustomerServiceLine /> Customer Care Portal</h1>
+                <p>We're here to help! Submit any complaints, queries, or feedback below.</p>
+            </div>
+
+            <div className="support-content-grid">
+                
+                {/* --- 1. Ticket Submission Form --- */}
+                <div className="support-card form-card">
+                    <h2><RiFileEditLine /> Submit New Request</h2>
+                    <form onSubmit={handleSubmitTicket} className="support-form">
+                        
+                        <label>Select Subject</label>
+                        <select 
+                            name="subject" 
+                            value={newTicket.subject} 
+                            onChange={handleChange}
+                            className="text-input"
+                            required
+                        >
+                            {subjects.map((sub) => (
+                                <option key={sub} value={sub}>{sub}</option>
+                            ))}
+                        </select>
+
+                        <label>Your Message</label>
+                        <textarea
+                            name="message"
+                            value={newTicket.message}
+                            onChange={handleChange}
+                            placeholder="Please describe your issue in detail..."
+                            className="text-input detail-input"
+                            required
+                        />
+
+                        <button type="submit" className="primary-btn" disabled={loading}>
+                            {loading ? 'Submitting...' : 'Submit Ticket'}
+                        </button>
+                    </form>
+                </div>
+
+                
+                {/* --- 2. Ticket History --- */}
+                <div className="support-card history-card">
+                    <h2><RiFileListLine /> Your Request History</h2>
+                    
+                    {tickets.length === 0 && <p className="no-tickets-msg">No recent support requests found.</p>}
+
+                    <div className="ticket-list">
+                        {tickets.map((ticket) => (
+                            <div key={ticket._id} className={`ticket-item status-${ticket.status.toLowerCase()}`}>
+                                <div className="ticket-header">
+                                    <span className="ticket-subject">{ticket.subject}</span>
+                                    <span className={`ticket-status`}>{ticket.status}</span>
+                                </div>
+                                <p className="ticket-date">Submitted: {new Date(ticket.createdAt).toLocaleDateString()}</p>
+                                <p className="ticket-message">{ticket.message.substring(0, 100)}...</p>
+                                {ticket.adminNote && (
+                                    <div className="admin-response">
+                                        <strong>Admin Note:</strong> {ticket.adminNote}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default CustomerCare;

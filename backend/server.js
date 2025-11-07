@@ -6,6 +6,7 @@ import foodRouter from "./routes/foodRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import geminiRouter from "./routes/geminiRoute.js"
+import supportRouter from "./routes/supportRoute.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -46,8 +47,8 @@ app.use("/api/user", userRouter);
 app.use("/api/food", foodRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
-app.use("/api/gemini", geminiRouter)
-
+app.use("/api/gemini", geminiRouter);
+app.use("/api/support", supportRouter);
 // Static folder for images
 app.use("/images", express.static("uploads"));
 
