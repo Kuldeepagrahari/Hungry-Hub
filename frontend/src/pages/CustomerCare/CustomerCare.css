@@ -171,6 +171,9 @@
 
 /* Responsive adjustments */
 @media (max-width: 800px) {
+    .support-container {
+        margin-top: 50px;
+    }
     .support-content-grid {
         grid-template-columns: 1fr;
     }
