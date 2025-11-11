@@ -34,7 +34,6 @@ const Navbar = ({ setShowLogin }) => {
                 <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div>
             </Link>
 
-            {/* Profile/Sign In Logic */}
             {!token ? (
                 <button onClick={() => setShowLogin(true)}>sign in</button>
             ) : (

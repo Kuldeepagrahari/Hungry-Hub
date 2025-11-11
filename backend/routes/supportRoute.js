@@ -1,4 +1,4 @@
-// routes/support.js
+
 import express from 'express';
 import { 
     submitTicket, 

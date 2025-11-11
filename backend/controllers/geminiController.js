@@ -1,15 +1,8 @@
-// controllers/geminiController.js
-
 import { ai, model } from '../config/gemini.js';
 import { getAllFoodItemsForAI } from './foodController.js';
 
-/**
- * Handles the AI recommendation generation based on user input and menu data.
- */
 export const getRecommendations = async (req, res) => {
     try {
-        // 1. Get User Input (from the front-end form)
-        // Note: The front-end should pass the aggregated prompt.
         const { prompt } = req.body;
         if (!prompt) {
             return res.status(400).json({ success: false, message: "A query prompt is required." });
